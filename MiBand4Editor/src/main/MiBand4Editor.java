@@ -87,9 +87,9 @@ public class MiBand4Editor implements MouseListener, KeyListener{
         toolPath=new File("MiBandWFTool_1.3.8_Palette/");
         
 		if(!toolPath.exists()) {
+			JOptionPane.showMessageDialog(null, getInLang("select_toolPath"));
 			StaticHelpers.setWinLookAndFeel();
 			JFileChooser f = new JFileChooser();
-			JOptionPane.showMessageDialog(null, getInLang("select_toolPath"));
 			f = new JFileChooser();
 			f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			f.setAcceptAllFileFilterUsed(false);

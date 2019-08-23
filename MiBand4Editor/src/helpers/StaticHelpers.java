@@ -132,9 +132,8 @@ public class StaticHelpers {
 			}
 		}catch(FileNotFoundException e) {
 			try {
-				e.printStackTrace();
 				System.out.println("JAR-MODE");
-				InputStream is = MiBand4Editor.class.getClassLoader().getResourceAsStream("xml/"+name);
+				InputStream is = MiBand4Editor.class.getClassLoader().getResourceAsStream("src/xml/"+name);
 				Document dom = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(is);
 				Element docEle = dom.getDocumentElement();
 				NodeList nl = docEle.getElementsByTagName("value");
