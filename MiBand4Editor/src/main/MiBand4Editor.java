@@ -69,7 +69,7 @@ public class MiBand4Editor implements MouseListener, KeyListener{
 	}
 	
 	public MiBand4Editor() {
-		readLanguage("de");
+		readLanguage("en");
         currentPath=new File("data/");
 		main = new JFrame();
 		panel = new SnapPanel(this);

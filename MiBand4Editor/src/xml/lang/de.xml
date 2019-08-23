@@ -124,7 +124,7 @@
 	<value name="error_io_single_title">IO-Fehler</value>
 	<value name="error_unequalDimension">Alle Bilder sollten dasselbe Format haben. Abweichungen führen zu fehlerhaftem Layout. Folgendes Bild weicht ab: </value>
 	<value name="error_unequalDimension_title">Ungleiches Format</value>
-	<value name="error_imageNotFound_background">Das Hintergrundbild wurde nicht gefunden, bitte lege es im \"data\"-Ordner als \"0000.png\" ab!</value>
+	<value name="error_imageNotFound_background">Das Hintergrundbild wurde nicht gefunden, bitte lege es in deinem Projekt-Ordner als \"background.png\" ab!</value>
 	<value name="error_imageNotFound_background_title">Hintergrundbild nicht gefunden</value>
 	<value name="error_io_background">Beim Lesen des Hintergrundbildes ist folgender IO-Fehler aufgetreten: </value>
 </values>

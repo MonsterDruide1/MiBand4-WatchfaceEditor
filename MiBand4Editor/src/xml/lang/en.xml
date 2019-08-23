@@ -112,19 +112,19 @@
 	<value name="settings_language_ok">OK</value>
 	
 	
-	<!-- <value name="error_imageNotFound_multi">Es wurden nicht alle Bild-Dateien gefunden, folgende Datei fehlt: </value>
-	<value name="error_imageNotFound_multi_title">Fehlende Dateien</value>
-	<value name="error_io_multi">Beim Lesen der Bilder ist folgender IO-Fehler aufgetreten: </value>
-	<value name="error_io_multi_title">IO-Fehler</value>
-	<value name="error_dirNotEmpty">Der Ordner ist nicht leer! Bitte wähle einen leeren Ordner aus.</value>
+	<value name="error_imageNotFound_multi">The following image file is missing: </value>
+	<value name="error_imageNotFound_multi_title">Missing files</value>
+	<value name="error_io_multi">While reading the images, following IO-Error occured: </value>
+	<value name="error_io_multi_title">IO-Error</value>
+	<value name="error_dirNotEmpty">This folder is not empty! Please select an empty folder.</value>
 	
-	<value name="error_imageNotFound_single">Die angegebene Bilddatei wurde nicht gefunden. Bitte überprüfe, ob der folgende Pfad korrekt ist: </value>
-	<value name="error_imageNotFound_single_title">Fehlende Datei</value>
-	<value name="error_io_single">Beim Lesen des Bildes ist folgender IO-Fehler aufgetreten: </value>
-	<value name="error_io_single_title">IO-Fehler</value>
-	<value name="error_unequalDimension">Alle Bilder sollten dasselbe Format haben. Abweichungen führen zu fehlerhaftem Layout. Folgendes Bild weicht ab: </value>
-	<value name="error_unequalDimension_title">Ungleiches Format</value>
-	<value name="error_imageNotFound_background">Das Hintergrundbild wurde nicht gefunden, bitte lege es im \"data\"-Ordner als \"0000.png\" ab!</value>
-	<value name="error_imageNotFound_background_title">Hintergrundbild nicht gefunden</value>
-	<value name="error_io_background">Beim Lesen des Hintergrundbildes ist folgender IO-Fehler aufgetreten: </value> -->
+	<value name="error_imageNotFound_single">The following image file is missing: </value>
+	<value name="error_imageNotFound_single_title">Missing file</value>
+	<value name="error_io_single">While reading the image, following IO-Error occured: </value>
+	<value name="error_io_single_title">IO-Error</value>
+	<value name="error_unequalDimension">All images should have the same dimensions. Changes lead to faulty layout. The following image has another dimension: </value>
+	<value name="error_unequalDimension_title">Unequal dimensions</value>
+	<value name="error_imageNotFound_background">The background image hasn't been found, please put it in your project folder as \"0000.png\"!</value>
+	<value name="error_imageNotFound_background_title">Background image not found</value>
+	<value name="error_io_background">While reading the background image, following IO-Error occured: </value>
 </values>
