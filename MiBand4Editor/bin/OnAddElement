@@ -1,0 +1,5 @@
+EditMenu
+MainMenu (Adding-Cycle, reenableElement)
+Mover (if unresizable, otherwise handler)
+Builder (New type?)
+MiBand4Editor (to open EditMenu)

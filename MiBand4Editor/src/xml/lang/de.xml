@@ -1,0 +1,130 @@
+<values>
+	<value name="ownLanguageName">Deutsch</value>
+	
+	<value name="select_toolPath">Bitte wähle den Pfad des MiBandWFTools aus!</value>
+	
+	<value name="editMenu_edit">Bearbeiten</value>
+	<value name="editMenu_edit_imageIndex">Bildindex</value>
+	<value name="editMenu_edit_imageCount">Anzahl der Bilder</value>
+	<value name="editMenu_edit_imageIndexAm">Bildindex AM</value>
+	<value name="editMenu_edit_imageIndexPm">Bildindex PM</value>
+	<value name="editMenu_edit_imageIndexOn">Bildindex An</value>
+	<value name="editMenu_edit_imageIndexOff">Bildindex Aus</value>
+	<value name="editMenu_edit_alignment">Ausrichtung</value>
+	<value name="editMenu_edit_spacing">Abstand</value>
+	<value name="editMenu_edit_delimiterIndex">Trennzeichen-Index</value>
+	<value name="editMenu_edit_noDataIndex">Keine-Daten-Index</value>
+	<value name="editMenu_edit_decimalPointIndex">Dezimalpunkt-Index</value>
+	<value name="editMenu_edit_suffixIndex">Suffix-Index</value>
+	<value name="editMenu_edit_twoDigitsMonth">Zweizahliger Monat</value>
+	<value name="editMenu_edit_twoDigitsDay">Zweizahliger Tag</value>
+	<value name="editMenu_edit_file">Datei</value>
+	<value name="editMenu_edit_boxWidth">Box-Breite</value>
+	<value name="editMenu_edit_order">Reihenfolge</value>
+	<value name="editMenu_delete">Löschen</value>
+	
+	<value name="edit_imageIndex">Bildindex?</value>
+	<value name="edit_imageCount">Anzahl der Bilder?</value>
+	<value name="edit_imageIndexAm">Bildindex AM?</value>
+	<value name="edit_imageIndexPm">Bildindex PM?</value>
+	<value name="edit_alignment">Ausrichtung?</value>
+	<value name="edit_alignment_title">Ausrichtung</value>
+	<value name="edit_spacing">Abstand?</value>
+	<value name="edit_delimiterIndex">Trennzeichen-Index?</value>
+	<value name="edit_noDataIndex">Keine-Daten-Index?</value>
+	<value name="edit_decimalPointIndex">Dezimalpunkt-Index?</value>
+	<value name="edit_suffixIndex">Suffix-Index?</value>
+	<value name="edit_twoDigitsMonth">Zweizahliger Monat?</value>
+	<value name="edit_twoDigitsMonth_title">Zweizahliger Monat</value>
+	<value name="edit_twoDigitsDay">Zweizahliger Tag?</value>
+	<value name="edit_twoDigitsDay_title">Zweizahliger Tag</value>
+	<value name="edit_imageIndexOn">Bildindex An?</value>
+	<value name="edit_imageIndexOff">Bildindex Aus?</value>
+	<value name="edit_boxWidth">Box-Breite?</value>
+	<value name="edit_order">Reihenfolge?</value>
+	
+	<value name="edit_alignment_left">Links</value>
+	<value name="edit_alignment_right">Rechts</value>
+	<value name="edit_alignment_hCenter">Horizontale Mitte</value>
+	<value name="edit_alignment_top">Oben</value>
+	<value name="edit_alignment_bottom">Unten</value>
+	<value name="edit_alignment_vCenter">Vertikale Mitte</value>
+	<value name="edit_alignment_topCenter">Oben-Mitte</value>
+	<value name="edit_alignment_topLeft">Oben-Links</value>
+	<value name="edit_alignment_topRight">Oben-Rechts</value>
+	<value name="edit_alignment_center">Mittig</value>
+	<value name="edit_alignment_centerLeft">Mittig-Links</value>
+	<value name="edit_alignment_centerRight">Mittig-Rechts</value>
+	<value name="edit_alignment_bottomCenter">Unten-Mitte</value>
+	<value name="edit_alignment_bottomLeft">Unten-Links</value>
+	<value name="edit_alignment_bottomRight">Unten-Rechts</value>
+	
+	<value name="edit_accept">OK</value>
+	
+	
+	<value name="mainMenu_add">Neu</value>
+	
+	<value name="mainMenu_add_time">Zeit</value>
+	<value name="mainMenu_add_time_hours">Stunden</value>
+	<value name="mainMenu_add_time_minutes">Minuten</value>
+	<value name="mainMenu_add_time_seconds">Sekunden</value>
+	
+	<value name="mainMenu_add_date">Datum</value>
+	<value name="mainMenu_add_date_monthAndDay">Monat+Tag</value>
+	<value name="mainMenu_add_date_weekday">Wochentag</value>
+	<value name="mainMenu_add_date_dayAmPm">AM/PM</value>
+	
+	<value name="mainMenu_add_activity">Aktivität</value>
+	<value name="mainMenu_add_activity_steps">Schritte</value>
+	<value name="mainMenu_add_activity_stepsGoal">Schritt-Ziel</value>
+	<value name="mainMenu_add_activity_calories">Kalorien</value>
+	<value name="mainMenu_add_activity_pulse">Puls</value>
+	<value name="mainMenu_add_activity_distance">Distanz</value>
+	
+	<value name="mainMenu_add_status">Status</value>
+	<value name="mainMenu_add_status_battery">Batterie</value>
+	<value name="mainMenu_add_status_battery_icon">Icon</value>
+	<value name="mainMenu_add_status_battery_text">Text</value>
+	
+	<value name="mainMenu_add_status_doNotDisturb">Bitte nicht stören</value>
+	<value name="mainMenu_add_status_bluetooth">Bluetooth</value>
+	<value name="mainMenu_add_status_lock">Sperre</value>
+	
+	<value name="mainMenu_add_bgitem">Hintergrund-Element</value>
+	
+	<value name="mainMenu_generate">Generieren</value>
+	
+	
+	<value name="topMenu_file">Datei</value>
+	<value name="topMenu_file_new">Neu</value>
+	<value name="topMenu_file_open">Öffnen</value>
+	<value name="topMenu_file_save">Speichern</value>
+	<value name="topMenu_file_saveAs">Speichern unter</value>
+	<value name="topMenu_file_generate">Generieren</value>
+	<value name="topMenu_file_import">Importieren</value>
+	<value name="topMenu_settings_toolPath">Tool-Pfad</value>
+	
+	<value name="topMenu_settings">Einstellungen</value>
+	<value name="topMenu_settings_language">Sprache</value>
+	
+	<value name="settings_language_title">Sprache</value>
+	<value name="settings_language_text">Bitte wähle deine Sprache!</value>
+	<value name="settings_language_ok">OK</value>
+	
+	
+	<value name="error_imageNotFound_multi">Es wurden nicht alle Bild-Dateien gefunden, folgende Datei fehlt: </value>
+	<value name="error_imageNotFound_multi_title">Fehlende Dateien</value>
+	<value name="error_io_multi">Beim Lesen der Bilder ist folgender IO-Fehler aufgetreten: </value>
+	<value name="error_io_multi_title">IO-Fehler</value>
+	<value name="error_dirNotEmpty">Der Ordner ist nicht leer! Bitte wähle einen leeren Ordner aus.</value>
+	
+	<value name="error_imageNotFound_single">Die angegebene Bilddatei wurde nicht gefunden. Bitte überprüfe, ob der folgende Pfad korrekt ist: </value>
+	<value name="error_imageNotFound_single_title">Fehlende Datei</value>
+	<value name="error_io_single">Beim Lesen des Bildes ist folgender IO-Fehler aufgetreten: </value>
+	<value name="error_io_single_title">IO-Fehler</value>
+	<value name="error_unequalDimension">Alle Bilder sollten dasselbe Format haben. Abweichungen führen zu fehlerhaftem Layout. Folgendes Bild weicht ab: </value>
+	<value name="error_unequalDimension_title">Ungleiches Format</value>
+	<value name="error_imageNotFound_background">Das Hintergrundbild wurde nicht gefunden, bitte lege es im \"data\"-Ordner als \"0000.png\" ab!</value>
+	<value name="error_imageNotFound_background_title">Hintergrundbild nicht gefunden</value>
+	<value name="error_io_background">Beim Lesen des Hintergrundbildes ist folgender IO-Fehler aufgetreten: </value>
+</values>

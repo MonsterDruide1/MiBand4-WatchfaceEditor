@@ -1,0 +1,91 @@
+<values>
+	<value name="editMenu_edit">Bearbeiten</value>
+	<!-- <value name="editMenu_edit_imageIndex">ImageIndex</value>
+	<value name="editMenu_edit_imageCount">ImageCount</value>
+	<value name="editMenu_edit_imageIndexAm">ImageIndexAm</value>
+	<value name="editMenu_edit_imageIndexPm">ImageIndexPm</value>
+	<value name="editMenu_edit_alignment">Alignment</value>
+	<value name="editMenu_edit_spacing">Spacing</value>
+	<value name="editMenu_edit_delimiterIndex">DelimiterIndex</value>
+	<value name="editMenu_edit_noDataIndex">NoDataImageIndex</value>
+	<value name="editMenu_edit_suffixIndex">SuffixIndex</value>
+	<value name="editMenu_edit_decimalPointIndex">DecimalPointIndex</value>
+	<value name="editMenu_edit_twoDigitsMonth">TwoDigitsMonth</value>
+	<value name="editMenu_edit_twoDigitsDay">TwoDigitsDay</value>
+	<value name="editMenu_edit_file">File</value> -->
+	<value name="editMenu_delete">Löschen</value>
+	
+	<!-- <value name="edit_imageIndex">ImageIndex?</value>
+	<value name="edit_imageCount">ImageCount?</value>
+	<value name="edit_imageIndexAm">ImageIndexAm?</value>
+	<value name="edit_imageIndexPm">ImageIndexPm?</value>
+	<value name="edit_alignment">Alignment?</value>
+	<value name="edit_alignment_title">Alignment</value>
+	<value name="edit_spacing">Spacing?</value>
+	<value name="edit_delimiterIndex">DelimiterIndex?</value>
+	<value name="edit_noDataIndex">NoDataImageIndex?</value>
+	<value name="edit_decimalPointIndex">DecimalPointIndex?</value>
+	<value name="edit_suffixIndex">SuffixIndex?</value>
+	<value name="edit_twoDigitsMonth">TwoDigitsMonth?</value>
+	<value name="edit_twoDigitsMonth_title">TwoDigitsMonth</value>
+	<value name="edit_twoDigitsDay">TwoDigitsDay?</value>
+	<value name="edit_twoDigitsDay_title">TwoDigitsDay</value>
+	
+	<value name="edit_alignment_left">Left</value>
+	<value name="edit_alignment_right">Right</value>
+	<value name="edit_alignment_hCenter">HCenter</value>
+	<value name="edit_alignment_top">Top</value>
+	<value name="edit_alignment_bottom">Bottom</value>
+	<value name="edit_alignment_vCenter">VCenter</value>
+	<value name="edit_alignment_topCenter">TopCenter</value>
+	<value name="edit_alignment_topLeft">TopLeft</value>
+	<value name="edit_alignment_topRight">TopRight</value>
+	<value name="edit_alignment_center">Center</value>
+	<value name="edit_alignment_centerLeft">CenterLeft</value>
+	<value name="edit_alignment_centerRight">CenterRight</value>
+	<value name="edit_alignment_bottomCenter">BottomCenter</value>
+	<value name="edit_alignment_bottomLeft">BottomLeft</value>
+	<value name="edit_alignment_bottomRight">BottomRight</value>
+	
+	<value name="edit_accept">OK</value>
+	
+	
+	<value name="mainMenu_add">Add</value>
+	
+	<value name="mainMenu_add_time">Time</value>
+	<value name="mainMenu_add_time_hours">Hours</value>
+	<value name="mainMenu_add_time_minutes">Minutes</value>
+	<value name="mainMenu_add_time_seconds">Seconds</value>
+	
+	<value name="mainMenu_add_date">Date</value>
+	<value name="mainMenu_add_date_monthAndDay">MonthAndDay</value>
+	<value name="mainMenu_add_date_weekday">WeekDay</value>
+	<value name="mainMenu_add_date_dayAmPm">DayAmPm</value>
+	
+	<value name="mainMenu_add_activity">Activity</value>
+	<value name="mainMenu_add_activity_steps">Steps</value>
+	<value name="mainMenu_add_activity_stepsGoal">StepsGoal</value>
+	<value name="mainMenu_add_activity_calories">Calories</value>
+	<value name="mainMenu_add_activity_pulse">Pulse</value>
+	<value name="mainMenu_add_activity_distance">Distance</value>
+	
+	<value name="mainMenu_add_bgitem">BGItem</value>
+	
+	<value name="mainMenu_generate">Generate</value> -->
+	
+	
+	<value name="error_imageNotFound_multi">Es wurden nicht alle Bild-Dateien gefunden, folgende Datei fehlt: </value>
+	<value name="error_imageNotFound_multi_title">Fehlende Dateien</value>
+	<value name="error_io_multi">Beim Lesen der Bilder ist folgender IO-Fehler aufgetreten: </value>
+	<value name="error_io_multi_title">IO-Fehler</value>
+	
+	<value name="error_imageNotFound_single">Die angegebene Bilddatei wurde nicht gefunden. Bitte überprüfe, ob der folgende Pfad korrekt ist: </value>
+	<value name="error_imageNotFound_single_title">Fehlende Datei</value>
+	<value name="error_io_single">Beim Lesen des Bildes ist folgender IO-Fehler aufgetreten: </value>
+	<value name="error_io_single_title">IO-Fehler</value>
+	<value name="error_unequalDimension">Alle Bilder sollten dasselbe Format haben. Abweichungen führen zu fehlerhaftem Layout. Folgendes Bild weicht ab: </value>
+	<value name="error_unequalDimension_title">Ungleiches Format</value>
+	<value name="error_imageNotFound_background">Das Hintergrundbild wurde nicht gefunden, bitte lege es im \"data\"-Ordner als \"0000.png\" ab!</value>
+	<value name="error_imageNotFound_background_title">Hintergrundbild nicht gefunden</value>
+	<value name="error_io_background">Beim Lesen des Hintergrundbildes ist folgender IO-Fehler aufgetreten: </value>
+</values>
