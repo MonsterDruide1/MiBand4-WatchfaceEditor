@@ -83,9 +83,9 @@ public class AmPm extends Element{
 		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
 
 		String amFormatted = String.format("%04d", imageIndexAm);
-		files[0]=new File(absolutePath+amFormatted+".png");
+		files[0]=new File(absolutePath+"\\"+amFormatted+".png");
 		String pmFormatted = String.format("%04d", imageIndexPm);
-		files[1]=new File(absolutePath+pmFormatted+".png");
+		files[1]=new File(absolutePath+"\\"+pmFormatted+".png");
 		return files;
 	}
 

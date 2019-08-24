@@ -111,7 +111,7 @@ public class ImageSet extends Element{
 		
 		for(int i=imageIndex;i<imageIndex+imagesCount;i++) {
 			String iFormatted = String.format("%04d", i);
-			files[i-imageIndex]=new File(absolutePath+iFormatted+".png");
+			files[i-imageIndex]=new File(absolutePath+"\\"+iFormatted+".png");
 		}
 		
 		return files;

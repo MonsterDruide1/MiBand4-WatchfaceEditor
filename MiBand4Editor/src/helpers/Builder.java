@@ -123,7 +123,9 @@ public class Builder {
 			builder.append(element.getJSON());
 			first=false;
 		}
-		builder.append(",\r\n");
+		if(!first) {
+			builder.append(",\r\n");
+		}
 		builder.append("    \"Battery\": {\r\n");
 		builder.append("      \"BatteryConfig\": {\r\n");
 		builder.append("        \"BoxWidth\": 0,\r\n");
@@ -265,7 +267,7 @@ public class Builder {
 			Files.move(Paths.get(img[1].getAbsolutePath()),Paths.get(img[0].getAbsolutePath()));
 		}
 		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
-		new File(absolutePath+"TEMP\\").delete();
+		new File(absolutePath+"\\TEMP\\").delete();
 	}
 
 	public void generateBackground(BGItem[] items) throws IOException {

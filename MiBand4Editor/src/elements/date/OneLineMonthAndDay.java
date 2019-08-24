@@ -119,7 +119,7 @@ public class OneLineMonthAndDay extends Element{
 		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
 		
 		String iFormatted = String.format("%04d", delimiterImageIndex);
-		newFiles[newFiles.length-1]=new File(absolutePath+iFormatted+".png");
+		newFiles[newFiles.length-1]=new File(absolutePath+"\\"+iFormatted+".png");
 		
 		return newFiles;
 	}

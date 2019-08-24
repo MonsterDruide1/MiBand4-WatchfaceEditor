@@ -124,7 +124,7 @@
 	<value name="error_io_single_title">IO-Error</value>
 	<value name="error_unequalDimension">All images should have the same dimensions. Changes lead to faulty layout. The following image has another dimension: </value>
 	<value name="error_unequalDimension_title">Unequal dimensions</value>
-	<value name="error_imageNotFound_background">The background image hasn't been found, please put it in your project folder as \"0000.png\"!</value>
+	<value name="error_imageNotFound_background">The background image hasn't been found, please put it in your project folder as "0000.png"!</value>
 	<value name="error_imageNotFound_background_title">Background image not found</value>
 	<value name="error_io_background">While reading the background image, following IO-Error occured: </value>
 </values>

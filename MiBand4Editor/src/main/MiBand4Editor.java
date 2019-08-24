@@ -84,7 +84,7 @@ public class MiBand4Editor implements MouseListener, KeyListener{
         panel.setLayout(null);
         main.add(panel);
         
-        toolPath=new File("MiBandWFTool_1.3.8_Palette/");
+        toolPath=new File("MiBandWFTool/");
         
 		if(!toolPath.exists()) {
 			JOptionPane.showMessageDialog(null, getInLang("select_toolPath"));

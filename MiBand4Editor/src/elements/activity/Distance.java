@@ -125,9 +125,9 @@ public class Distance extends Element{
 		}
 		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
 		String iFormatted = String.format("%04d", suffixImageIndex);
-		all[all.length-2]=new File(absolutePath+iFormatted+".png");
+		all[all.length-2]=new File(absolutePath+"\\"+iFormatted+".png");
 		iFormatted = String.format("%04d", decimalPointImageIndex);
-		all[all.length-1]=new File(absolutePath+iFormatted+".png");
+		all[all.length-1]=new File(absolutePath+"\\"+iFormatted+".png");
 		return all;
 	}
 

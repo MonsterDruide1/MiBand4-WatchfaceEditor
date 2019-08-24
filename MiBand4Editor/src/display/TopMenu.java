@@ -229,7 +229,7 @@ public class TopMenu implements ActionListener{
 		JFileChooser f = new JFileChooser();
 		f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		f.setAcceptAllFileFilterUsed(false);
-		f.showOpenDialog(null);
+		f.showSaveDialog(null);
 		StaticHelpers.setJavaLookAndFeel();
 		File selected = f.getSelectedFile();
 		

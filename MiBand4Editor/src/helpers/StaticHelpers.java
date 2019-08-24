@@ -305,7 +305,7 @@ public class StaticHelpers {
 					String statusKey=statusKeys.next();
 					
 					if(statusKey.equals("Battery")) {
-						JSONObject battery = object.getJSONObject(statusKey);
+						JSONObject battery = status.getJSONObject(statusKey);
 						Iterator<String> batteryKeys = battery.keys();
 						
 						while(batteryKeys.hasNext()) {

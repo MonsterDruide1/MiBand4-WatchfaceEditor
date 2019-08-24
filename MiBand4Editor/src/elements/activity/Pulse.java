@@ -114,7 +114,7 @@ public class Pulse extends Element{
 		}
 		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
 		String iFormatted = String.format("%04d", noDataImageIndex);
-		all[all.length-1]=new File(absolutePath+iFormatted+".png");
+		all[all.length-1]=new File(absolutePath+"\\"+iFormatted+".png");
 		return all;
 	}
 
