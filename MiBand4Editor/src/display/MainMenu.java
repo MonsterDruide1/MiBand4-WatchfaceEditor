@@ -41,6 +41,7 @@ public class MainMenu implements ActionListener {
 	private MiBand4Editor parent;
 	
 	public MainMenu(MiBand4Editor parent) {
+		this.parent = parent;
 		menu = new JPopupMenu();
 		
 		{
@@ -50,17 +51,9 @@ public class MainMenu implements ActionListener {
 			{
 				JMenu time = new JMenu(parent.getInLang("mainMenu_add_time"));
 				
-				JMenuItem hours = new JMenuItem(parent.getInLang("mainMenu_add_time_hours"));
-				hours.addActionListener(this);
-				time.add(hours);
-
-				JMenuItem minutes = new JMenuItem(parent.getInLang("mainMenu_add_time_minutes"));
-				minutes.addActionListener(this);
-				time.add(minutes);
-				
-				JMenuItem seconds = new JMenuItem(parent.getInLang("mainMenu_add_time_seconds"));
-				seconds.addActionListener(this);
-				time.add(seconds);
+				time.add(item("mainMenu_add_time_hours"));
+				time.add(item("mainMenu_add_time_minutes"));
+				time.add(item("mainMenu_add_time_seconds"));
 				
 				add.add(time);
 			}
@@ -68,17 +61,9 @@ public class MainMenu implements ActionListener {
 			{
 				JMenu date = new JMenu(parent.getInLang("mainMenu_add_date"));
 				
-				JMenuItem monthAndDay = new JMenuItem(parent.getInLang("mainMenu_add_date_monthAndDay"));
-				monthAndDay.addActionListener(this);
-				date.add(monthAndDay);
-				
-				JMenuItem weekday = new JMenuItem(parent.getInLang("mainMenu_add_date_weekday"));
-				weekday.addActionListener(this);
-				date.add(weekday);
-				
-				JMenuItem dayAmPm = new JMenuItem(parent.getInLang("mainMenu_add_date_dayAmPm"));
-				dayAmPm.addActionListener(this);
-				date.add(dayAmPm);
+				date.add(item("mainMenu_add_date_monthAndDay"));
+				date.add(item("mainMenu_add_date_weekday"));
+				date.add(item("mainMenu_add_date_dayAmPm"));
 				
 				add.add(date);
 			}
@@ -86,25 +71,11 @@ public class MainMenu implements ActionListener {
 			{
 				JMenu activity = new JMenu(parent.getInLang("mainMenu_add_activity"));
 				
-				JMenuItem steps = new JMenuItem(parent.getInLang("mainMenu_add_activity_steps"));
-				steps.addActionListener(this);
-				activity.add(steps);
-				
-				JMenuItem stepsGoal = new JMenuItem(parent.getInLang("mainMenu_add_activity_stepsGoal"));
-				stepsGoal.addActionListener(this);
-				activity.add(stepsGoal);
-				
-				JMenuItem calories = new JMenuItem(parent.getInLang("mainMenu_add_activity_calories"));
-				calories.addActionListener(this);
-				activity.add(calories);
-				
-				JMenuItem pulse = new JMenuItem(parent.getInLang("mainMenu_add_activity_pulse"));
-				pulse.addActionListener(this);
-				activity.add(pulse);
-				
-				JMenuItem distance = new JMenuItem(parent.getInLang("mainMenu_add_activity_distance"));
-				distance.addActionListener(this);
-				activity.add(distance);
+				activity.add(item("mainMenu_add_activity_steps"));
+				activity.add(item("mainMenu_add_activity_stepsGoal"));;
+				activity.add(item("mainMenu_add_activity_calories"));
+				activity.add(item("mainMenu_add_activity_pulse"));
+				activity.add(item("mainMenu_add_activity_distance"));
 				
 				add.add(activity);
 			}
@@ -115,28 +86,15 @@ public class MainMenu implements ActionListener {
 				{
 					JMenu battery = new JMenu(parent.getInLang("mainMenu_add_status_battery"));
 					
-					JMenuItem batteryText = new JMenuItem(parent.getInLang("mainMenu_add_status_battery_text"));
-					batteryText.addActionListener(this);
-					battery.add(batteryText);
-					
-					JMenuItem batteryIcon = new JMenuItem(parent.getInLang("mainMenu_add_status_battery_icon"));
-					batteryIcon.addActionListener(this);
-					battery.add(batteryIcon);
+					battery.add(item("mainMenu_add_status_battery_text"));
+					battery.add(item("mainMenu_add_status_battery_icon"));
 					
 					status.add(battery);
 				}
-				
-				JMenuItem doNotDisturb = new JMenuItem(parent.getInLang("mainMenu_add_status_doNotDisturb"));
-				doNotDisturb.addActionListener(this);
-				status.add(doNotDisturb);
-				
-				JMenuItem bluetooth = new JMenuItem(parent.getInLang("mainMenu_add_status_bluetooth"));
-				bluetooth.addActionListener(this);
-				status.add(bluetooth);
-				
-				JMenuItem lock = new JMenuItem(parent.getInLang("mainMenu_add_status_lock"));
-				lock.addActionListener(this);
-				status.add(lock);
+
+				status.add(item("mainMenu_add_status_doNotDisturb"));
+				status.add(item("mainMenu_add_status_bluetooth"));
+				status.add(item("mainMenu_add_status_lock"));
 				
 				add.add(status);
 			}
@@ -151,82 +109,66 @@ public class MainMenu implements ActionListener {
 			generate.addActionListener(this);
 			menu.add(generate);
 		}
-		
-		this.parent = parent;
+	}
+	
+	public JMenuItem item(String sourceName) {
+		JMenuItem lock = new JMenuItem(parent.getInLang(sourceName));
+		lock.addActionListener(this);
+		return lock;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String title = e.getActionCommand();
-		JPopupMenu time = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[0].getSubElements()[0];
-		JPopupMenu date = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[1].getSubElements()[0];
-		JPopupMenu activity = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[2].getSubElements()[0];
-		JPopupMenu status = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[3].getSubElements()[0];
 		
 		if(title.equals(parent.getInLang("mainMenu_add_time_hours"))) {
-			addTimeHours();
-			((JMenuItem)time.getSubElements()[0]).setEnabled(false);
+			addTimeHours(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_time_minutes"))) {
-			addTimeMinutes();
-			((JMenuItem)time.getSubElements()[1]).setEnabled(false);
+			addTimeMinutes(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_time_seconds"))) {
-			addTimeSeconds();
-			((JMenuItem)time.getSubElements()[2]).setEnabled(false);
+			addTimeSeconds(false);
 		}
 
 		else if(title.equals(parent.getInLang("mainMenu_add_date_dayAmPm"))) {
 			addDateDayAmPm();
-			((JMenuItem)date.getSubElements()[2]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_date_monthAndDay"))) {
 			addDateMonthAndDay();
-			((JMenuItem)date.getSubElements()[0]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_date_weekday"))) {
-			addDateWeekday();
-			((JMenuItem)date.getSubElements()[1]).setEnabled(false);
+			addDateWeekday(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_activity_steps"))) {
 			addActivitySteps();
-			((JMenuItem)activity.getSubElements()[0]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_activity_stepsGoal"))) {
 			addActivityStepGoal();
-			((JMenuItem)activity.getSubElements()[1]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_activity_calories"))) {
 			addActivityCalories();
-			((JMenuItem)activity.getSubElements()[2]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_activity_pulse"))) {
 			addActivityPulse();
-			((JMenuItem)activity.getSubElements()[3]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_activity_distance"))) {
 			addActivityDistance();
-			((JMenuItem)activity.getSubElements()[4]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_status_battery_text"))) {
 			addStatusBatteryText();
-			((JMenuItem)activity.getSubElements()[0].getSubElements()[0].getSubElements()[0]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_status_battery_icon"))) {
-			addStatusBatteryIcon();
-			((JMenuItem)activity.getSubElements()[0].getSubElements()[0].getSubElements()[1]).setEnabled(false);
+			addStatusBatteryIcon(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_status_doNotDisturb"))) {
 			addStatusDoNotDisturb();
-			((JMenuItem)status.getSubElements()[1]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_status_bluetooth"))) {
 			addStatusBluetooth();
-			((JMenuItem)status.getSubElements()[2]).setEnabled(false);
 		}
 		else if(title.equals(parent.getInLang("mainMenu_add_status_lock"))) {
 			addStatusLock();
-			((JMenuItem)status.getSubElements()[3]).setEnabled(false);
 		}
 		
 		else if(title.equals(parent.getInLang("mainMenu_add_bgitem"))) {
@@ -239,12 +181,14 @@ public class MainMenu implements ActionListener {
 		menu.setSelected(null);
 	}
 
-	private void addTimeHours() {
+	private void addTimeHours(boolean ignoreDimensions) {
 		int imageIndex = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageIndex")));
 		int imageCount = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageCount")));
 		try {
-			HoursGroup group = new HoursGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,false);
+			HoursGroup group = new HoursGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,ignoreDimensions);
 			parent.addElement(group);
+			JPopupMenu time = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[0].getSubElements()[0];
+			((JMenuItem)time.getSubElements()[0]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -254,28 +198,18 @@ public class MainMenu implements ActionListener {
 		} catch (UnequalDimensionsException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_unequalDimension")+e1.getMessage(), parent.getInLang("error_unequalDimension_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
-			HoursGroup group;
-			try {
-				group = new HoursGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,true);
-				parent.addElement(group);
-			} catch (FileNotFoundException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch(IOException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_io_multi")+e1.getMessage(), parent.getInLang("error_io_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch (UnequalDimensionsException e2) { //should not happen
-				e2.printStackTrace();
-			}
+			addTimeHours(true);
 		}
 	}
 	
-	private void addTimeMinutes() {
+	private void addTimeMinutes(boolean ignoreDimensions) {
 		int imageIndex = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageIndex")));
 		int imageCount = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageCount")));
 		try {
-			MinutesGroup group = new MinutesGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,false);
+			MinutesGroup group = new MinutesGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,ignoreDimensions);
 			parent.addElement(group);
+			JPopupMenu time = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[0].getSubElements()[0];
+			((JMenuItem)time.getSubElements()[1]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -285,28 +219,18 @@ public class MainMenu implements ActionListener {
 		} catch (UnequalDimensionsException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_unequalDimension")+e1.getMessage(), parent.getInLang("error_unequalDimension_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
-			MinutesGroup group;
-			try {
-				group = new MinutesGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,true);
-				parent.addElement(group);
-			} catch (FileNotFoundException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch(IOException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_io_multi")+e1.getMessage(), parent.getInLang("error_io_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch (UnequalDimensionsException e2) { //should not happen
-				e2.printStackTrace();
-			}
+			addTimeMinutes(ignoreDimensions);
 		}
 	}
 	
-	private void addTimeSeconds() {
+	private void addTimeSeconds(boolean ignoreDimensions) {
 		int imageIndex = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageIndex")));
 		int imageCount = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageCount")));
 		try {
-			SecondsGroup group = new SecondsGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,false);
+			SecondsGroup group = new SecondsGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,ignoreDimensions);
 			parent.addElement(group);
+			JPopupMenu time = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[0].getSubElements()[0];
+			((JMenuItem)time.getSubElements()[2]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -316,19 +240,7 @@ public class MainMenu implements ActionListener {
 		} catch (UnequalDimensionsException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_unequalDimension")+e1.getMessage(), parent.getInLang("error_unequalDimension_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
-			SecondsGroup group;
-			try {
-				group = new SecondsGroup(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,true);
-				parent.addElement(group);
-			} catch (FileNotFoundException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch(IOException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_io_multi")+e1.getMessage(), parent.getInLang("error_io_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch (UnequalDimensionsException e2) { //should not happen
-				e2.printStackTrace();
-			}
+			addTimeSeconds(true);
 		}
 	}
 	
@@ -338,6 +250,8 @@ public class MainMenu implements ActionListener {
 		try {
 			AmPm group = new AmPm(parent.lastClick.x/3,parent.lastClick.y/3,imageIndexAm,imageIndexPm);
 			parent.addElement(group);
+			JPopupMenu date = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[1].getSubElements()[0];
+			((JMenuItem)date.getSubElements()[2]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -361,6 +275,8 @@ public class MainMenu implements ActionListener {
 		try {
 			MonthAndDay group = new MonthAndDay(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount, delimiterIndex, twoDigitsMonth, twoDigitsDay);
 			parent.addElement(group);
+			JPopupMenu date = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[1].getSubElements()[0];
+			((JMenuItem)date.getSubElements()[0]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -373,12 +289,14 @@ public class MainMenu implements ActionListener {
 		}
 	}
 	
-	private void addDateWeekday() {
+	private void addDateWeekday(boolean ignoreDimensions) {
 		int imageIndex = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageIndex")));
 		int imageCount = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageCount")));
 		try {
-			WeekDay group = new WeekDay(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,false);
+			WeekDay group = new WeekDay(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,ignoreDimensions);
 			parent.addElement(group);
+			JPopupMenu date = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[1].getSubElements()[0];
+			((JMenuItem)date.getSubElements()[1]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -388,19 +306,7 @@ public class MainMenu implements ActionListener {
 		} catch (UnequalDimensionsException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_unequalDimension")+e1.getMessage(), parent.getInLang("error_unequalDimension_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
-			WeekDay group;
-			try {
-				group = new WeekDay(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,true);
-				parent.addElement(group);
-			} catch (FileNotFoundException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch(IOException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_io_multi")+e1.getMessage(), parent.getInLang("error_io_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch (UnequalDimensionsException e2) { //should not happen
-				e2.printStackTrace();
-			}
+			addDateWeekday(true);
 		}
 	}
 	
@@ -412,6 +318,8 @@ public class MainMenu implements ActionListener {
 		try {
 			Steps group = new Steps(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount);
 			parent.addElement(group);
+			JPopupMenu activity = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[2].getSubElements()[0];
+			((JMenuItem)activity.getSubElements()[0]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -432,6 +340,8 @@ public class MainMenu implements ActionListener {
 		try {
 			StepsGoal group = new StepsGoal(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount);
 			parent.addElement(group);
+			JPopupMenu activity = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[2].getSubElements()[0];
+			((JMenuItem)activity.getSubElements()[1]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -453,6 +363,8 @@ public class MainMenu implements ActionListener {
 		try {
 			Calories group = new Calories(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount, delimiterIndex);
 			parent.addElement(group);
+			JPopupMenu activity = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[2].getSubElements()[0];
+			((JMenuItem)activity.getSubElements()[2]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -474,6 +386,8 @@ public class MainMenu implements ActionListener {
 		try {
 			Pulse group = new Pulse(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount, noDataIndex);
 			parent.addElement(group);
+			JPopupMenu activity = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[2].getSubElements()[0];
+			((JMenuItem)activity.getSubElements()[3]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -496,6 +410,8 @@ public class MainMenu implements ActionListener {
 		try {
 			Distance group = new Distance(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount, decimalPointIndex, suffixIndex);
 			parent.addElement(group);
+			JPopupMenu activity = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[2].getSubElements()[0];
+			((JMenuItem)activity.getSubElements()[4]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -516,6 +432,8 @@ public class MainMenu implements ActionListener {
 		try {
 			BatteryText group = new BatteryText(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount);
 			parent.addElement(group);
+			JPopupMenu status = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[3].getSubElements()[0];
+			((JMenuItem)status.getSubElements()[0].getSubElements()[0].getSubElements()[0]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -528,12 +446,14 @@ public class MainMenu implements ActionListener {
 		}
 	}
 	
-	private void addStatusBatteryIcon() {
+	private void addStatusBatteryIcon(boolean ignoreDimensions) {
 		int imageIndex = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageIndex")));
 		int imageCount = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageCount")));
 		try {
-			BatteryIcon group = new BatteryIcon(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,false);
+			BatteryIcon group = new BatteryIcon(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,ignoreDimensions);
 			parent.addElement(group);
+			JPopupMenu status = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[3].getSubElements()[0];
+			((JMenuItem)status.getSubElements()[0].getSubElements()[0].getSubElements()[1]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -543,23 +463,11 @@ public class MainMenu implements ActionListener {
 		} catch (UnequalDimensionsException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_unequalDimension")+e1.getMessage(), parent.getInLang("error_unequalDimension_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
-			BatteryIcon group;
-			try {
-				group = new BatteryIcon(parent.lastClick.x/3,parent.lastClick.y/3,imageIndex,imageCount,true);
-				parent.addElement(group);
-			} catch (FileNotFoundException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch(IOException e2) {
-				JOptionPane.showMessageDialog(null, parent.getInLang("error_io_multi")+e1.getMessage(), parent.getInLang("error_io_multi_title"), JOptionPane.ERROR_MESSAGE);
-				e1.printStackTrace();
-			} catch (UnequalDimensionsException e2) { //should not happen
-				e2.printStackTrace();
-			}
+			addStatusBatteryIcon(true);
 		}
 	}
 
-	private void addStatus(String name) {
+	private void addStatus(String name, int menuNr) {
 		int boxWidth = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_boxWidth")));
 		String alignment = StaticConfigurators.askForAlignment(parent);
 		int order = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_order")));
@@ -568,6 +476,8 @@ public class MainMenu implements ActionListener {
 		try {
 			Switch group = new Switch(name,parent.lastClick.x/3, parent.lastClick.y/3, boxWidth, alignment, order, imageIndexOn, imageIndexOff);
 			parent.addElement(group);
+			JPopupMenu status = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[3].getSubElements()[0];
+			((JMenuItem)status.getSubElements()[menuNr]).setEnabled(false);
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, parent.getInLang("error_imageNotFount_multi")+e1.getMessage(), parent.getInLang("error_imageNotFount_multi_title"), JOptionPane.ERROR_MESSAGE);
 			e1.printStackTrace();
@@ -578,15 +488,15 @@ public class MainMenu implements ActionListener {
 	}
 
 	private void addStatusDoNotDisturb() {
-		addStatus("DoNotDisturb");
+		addStatus("DoNotDisturb",1);
 	}
 	
 	private void addStatusBluetooth() {
-		addStatus("Bluetooth");
+		addStatus("Bluetooth",2);
 	}
 	
 	private void addStatusLock() {
-		addStatus("Lock");
+		addStatus("Lock",3);
 	}
 	
 	private void addBGItem() {
