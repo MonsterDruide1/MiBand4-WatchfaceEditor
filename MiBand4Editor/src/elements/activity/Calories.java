@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import display.TopalignedLabel;
 import elements.Element;
 import elements.basic.Number;
+import helpers.StaticHelpers;
 import helpers.UnequalDimensionsException;
 import main.MiBand4Editor;
 
@@ -43,10 +44,12 @@ public class Calories extends Element{
 		TopalignedLabel label2 = new TopalignedLabel(stepsGoal.getImage(0));
 		TopalignedLabel label3 = new TopalignedLabel(stepsGoal.getImage(0));
 		TopalignedLabel label4 = new TopalignedLabel(stepsGoal.getImage(0));
+		TopalignedLabel label5 = new TopalignedLabel(StaticHelpers.getJLabelFromImage(delimiterImageIndex));
 		panel.add(label1);
 		panel.add(label2);
 		panel.add(label3);
 		panel.add(label4);
+		panel.add(label5);
 		panel.setName(this.getClass().toString());
 		panel.setOpaque(false);
 		

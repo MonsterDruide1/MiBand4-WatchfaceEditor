@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import helpers.StaticHelpers;
+import main.MiBand4Editor;
 
 public class BGItem extends Element{
 	
@@ -25,8 +26,7 @@ public class BGItem extends Element{
 	int y;
 	
 	public BGItem(File selFile, int i, int x, int y) throws IOException {
-		String temp = new File(".").getAbsolutePath();
-		String absolutePath = temp.substring(0,temp.length()-1)+"data";
+		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
 		file = new File(absolutePath+"\\BGItem"+i+".png");
 		Files.copy(Paths.get(selFile.getAbsolutePath()), Paths.get(file.getAbsolutePath()),StandardCopyOption.REPLACE_EXISTING);
 		
