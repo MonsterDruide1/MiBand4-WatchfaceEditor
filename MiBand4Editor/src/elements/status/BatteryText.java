@@ -28,7 +28,7 @@ public class BatteryText extends Element{
 	}
 
 	public BatteryText(JSONObject jsonObject) {
-		batteryText = new Number(jsonObject.getJSONObject("Text"));
+		batteryText = new Number(jsonObject);
 	}
 
 	public JPanel getPreview(int w, int h) throws IOException {

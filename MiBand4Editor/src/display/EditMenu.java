@@ -646,6 +646,7 @@ public class EditMenu implements ActionListener {
 	private void editFile() {
 		StaticHelpers.setWinLookAndFeel();
 		JFileChooser f = new JFileChooser();
+		f.setCurrentDirectory(new File("."));
 		f.showOpenDialog(null);
 		File file = f.getSelectedFile();
 		StaticHelpers.setJavaLookAndFeel();

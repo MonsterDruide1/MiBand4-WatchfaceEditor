@@ -97,11 +97,11 @@
 	
 	<value name="topMenu_file">File</value>
 	<value name="topMenu_file_new">New</value>
-	<value name="topMenu_file_open">Open</value>
+	<value name="topMenu_file_open">Open Project</value>
 	<value name="topMenu_file_save">Save</value>
 	<value name="topMenu_file_saveAs">Save As</value>
 	<value name="topMenu_file_generate">Generate</value>
-	<value name="topMenu_file_import">Import</value>
+	<value name="topMenu_file_import">Import Watchface</value>
 	
 	<value name="topMenu_settings">Settings</value>
 	<value name="topMenu_settings_language">Language</value>

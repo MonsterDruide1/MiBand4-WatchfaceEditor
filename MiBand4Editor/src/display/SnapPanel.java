@@ -11,9 +11,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +25,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import org.json.JSONObject;
 
 import main.MiBand4Editor;
 
@@ -42,12 +46,25 @@ public class SnapPanel extends JPanel implements MouseListener,MouseMotionListen
 	public boolean selecting;
 	
 	public boolean bgNotFoundShown = false;
+	
+	private Point backgroundCoords;
 
-    public SnapPanel(MiBand4Editor main) {
+    public SnapPanel(MiBand4Editor main) throws IOException {
     	super.setName("SnapPanel");
     	this.main=main;
     	addMouseListener(this);
     	addMouseMotionListener(this);
+		BufferedReader br = new BufferedReader(new FileReader(new File(MiBand4Editor.currentPath.getAbsolutePath()+"\\watchface.json")));
+		String line = "";
+		StringBuilder builder = new StringBuilder();
+		while((line=br.readLine())!=null) {
+			builder.append(line);
+		}
+		br.close();
+		
+		JSONObject all = new JSONObject(builder.toString());
+		JSONObject image = all.getJSONObject("Background").getJSONObject("Image");
+		backgroundCoords = new Point(image.getInt("X"),image.getInt("Y"));
     }
 
     public int getSnapDelta() {
@@ -64,7 +81,8 @@ public class SnapPanel extends JPanel implements MouseListener,MouseMotionListen
 			image.flush();
 			im.flush();
 			System.gc();
-	        g.drawImage(im,0,0,null);
+			g.drawRect(0, 0, 120*3, 240*3);
+	        g.drawImage(im,backgroundCoords.x,backgroundCoords.y,null);
 		} catch (FileNotFoundException e) {
 			if(!bgNotFoundShown) {
 				bgNotFoundShown=true;
@@ -172,5 +190,19 @@ public class SnapPanel extends JPanel implements MouseListener,MouseMotionListen
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+	}
+
+	public void readBGCoords() throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(new File(MiBand4Editor.currentPath.getAbsolutePath()+"\\watchface.json")));
+		String line = "";
+		StringBuilder builder = new StringBuilder();
+		while((line=br.readLine())!=null) {
+			builder.append(line);
+		}
+		br.close();
+		
+		JSONObject all = new JSONObject(builder.toString());
+		JSONObject image = all.getJSONObject("Background").getJSONObject("Image");
+		backgroundCoords = new Point(image.getInt("X"),image.getInt("Y"));
 	}
 }

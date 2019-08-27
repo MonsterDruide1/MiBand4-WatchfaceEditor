@@ -23,7 +23,7 @@ public class WeekDay extends Element{
 	}
 	
 	public WeekDay(JSONObject jsonObject) {
-		set = new ImageSet(jsonObject.getJSONObject("Icon"));
+		set = new ImageSet(jsonObject);
 	}
 
 	@Override

@@ -502,6 +502,7 @@ public class MainMenu implements ActionListener {
 	private void addBGItem() {
 		StaticHelpers.setWinLookAndFeel();
 		JFileChooser f = new JFileChooser();
+		f.setCurrentDirectory(new File("."));
 		f.addChoosableFileFilter(new FileFilter() {
 			@Override
 			public boolean accept(File f) {

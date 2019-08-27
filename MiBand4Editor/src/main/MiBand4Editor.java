@@ -2,13 +2,16 @@ package main;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.HeadlessException;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -72,7 +75,11 @@ public class MiBand4Editor implements MouseListener, KeyListener{
 		readLanguage("en");
         currentPath=new File("data/");
 		main = new JFrame();
-		panel = new SnapPanel(this);
+		try {
+			panel = new SnapPanel(this);
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
         panel.addMouseListener(this);
         panel.addKeyListener(this);
         main.addKeyListener(this);
@@ -86,16 +93,22 @@ public class MiBand4Editor implements MouseListener, KeyListener{
         
         toolPath=new File("MiBandWFTool/");
         
-		if(!toolPath.exists()) {
-			JOptionPane.showMessageDialog(null, getInLang("select_toolPath"));
-			StaticHelpers.setWinLookAndFeel();
-			JFileChooser f = new JFileChooser();
-			f = new JFileChooser();
-			f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			f.setAcceptAllFileFilterUsed(false);
-			f.showOpenDialog(null);
-			toolPath=f.getSelectedFile();
-			StaticHelpers.setJavaLookAndFeel();
+		try {
+			while(!isValidToolpath(toolPath)) {
+				JOptionPane.showMessageDialog(null, getInLang("select_toolPath"));
+				StaticHelpers.setWinLookAndFeel();
+				JFileChooser f = new JFileChooser();
+				f = new JFileChooser();
+				f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				f.setAcceptAllFileFilterUsed(false);
+				f.showOpenDialog(null);
+				toolPath=f.getSelectedFile();
+				StaticHelpers.setJavaLookAndFeel();
+			}
+		} catch (HeadlessException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
         
         try {
@@ -113,6 +126,23 @@ public class MiBand4Editor implements MouseListener, KeyListener{
         main.setVisible(true);
 	}
 	
+	private boolean isValidToolpath(File toolPath) throws IOException {
+		if(!toolPath.exists()) {
+			return false;
+		}
+		if(!toolPath.isDirectory()) {
+			return false;
+		}
+		
+		Process p = Runtime.getRuntime().exec(toolPath.getAbsolutePath()+"\\Watchface.exe");
+		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		String line = br.readLine();
+		if(line.equals("  Mi Band 4 Watchface Edited by PG 1.3.8")) {
+			return true;
+		}
+		return false;
+	}
+
 	public void readLanguage(String shortName) {
 		language = StaticHelpers.parseLanguage("lang/"+shortName+".xml");
 	}
@@ -393,6 +423,7 @@ public class MiBand4Editor implements MouseListener, KeyListener{
 		
 		try {
 			StaticHelpers.parseWatchface(this,folder);
+			panel.readBGCoords();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

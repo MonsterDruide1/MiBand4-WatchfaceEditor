@@ -59,6 +59,11 @@ public class TopMenu implements ActionListener{
 			newProj.setMnemonic(KeyEvent.VK_N);
 			newProj.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,ActionEvent.CTRL_MASK));
 			fileMenu.add(newProj);
+			
+			JMenuItem importOpen = getMenuItem("topMenu_file_import");
+			importOpen.setMnemonic(KeyEvent.VK_I);
+			importOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,ActionEvent.CTRL_MASK));
+			fileMenu.add(importOpen);
 
 			JMenuItem open = getMenuItem("topMenu_file_open");
 			open.setMnemonic(KeyEvent.VK_O);
@@ -79,11 +84,6 @@ public class TopMenu implements ActionListener{
 			generate.setMnemonic(KeyEvent.VK_G);
 			generate.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G,ActionEvent.CTRL_MASK));
 			fileMenu.add(generate);
-			
-			JMenuItem importOpen = getMenuItem("topMenu_file_import");
-			importOpen.setMnemonic(KeyEvent.VK_I);
-			importOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,ActionEvent.CTRL_MASK));
-			fileMenu.add(importOpen);
 			
 			menuBar.add(fileMenu);
 		}
@@ -146,6 +146,7 @@ public class TopMenu implements ActionListener{
 	private void newProject() {
 		StaticHelpers.setWinLookAndFeel();
 		JFileChooser f = new JFileChooser();
+		f.setCurrentDirectory(new File("."));
 		f.addChoosableFileFilter(new FileFilter() {
 			@Override
 			public boolean accept(File f) {
@@ -194,6 +195,7 @@ public class TopMenu implements ActionListener{
 	private void openProject() {
 		StaticHelpers.setWinLookAndFeel();
 		JFileChooser f = new JFileChooser();
+		f.setCurrentDirectory(new File("."));
 		f.addChoosableFileFilter(new FileFilter() {
 			@Override
 			public boolean accept(File f) {
@@ -227,6 +229,7 @@ public class TopMenu implements ActionListener{
 	private void saveAs() {
 		StaticHelpers.setWinLookAndFeel();
 		JFileChooser f = new JFileChooser();
+		f.setCurrentDirectory(new File("."));
 		f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		f.setAcceptAllFileFilterUsed(false);
 		f.showSaveDialog(null);
@@ -270,6 +273,7 @@ public class TopMenu implements ActionListener{
 	private void importOpen() {
 		StaticHelpers.setWinLookAndFeel();
 		JFileChooser f = new JFileChooser();
+		f.setCurrentDirectory(new File("."));
 		f.addChoosableFileFilter(new FileFilter() {
 			@Override
 			public boolean accept(File f) {
@@ -277,7 +281,6 @@ public class TopMenu implements ActionListener{
 					return true;
 				}
 				String[] name = f.getAbsolutePath().split("\\.");
-				System.out.println(name[name.length-1]);
 				if(name[name.length-1].equals("bin")) {
 					return true;
 				}
@@ -319,6 +322,38 @@ public class TopMenu implements ActionListener{
 				e.printStackTrace();
 			}
 			selected = new File(selected.getAbsolutePath().substring(0,selected.getAbsolutePath().length()-4));
+		}
+		else {
+			StaticHelpers.setWinLookAndFeel();
+			f = new JFileChooser();
+			f.setCurrentDirectory(new File("."));
+			f.addChoosableFileFilter(new FileFilter() {
+				@Override
+				public boolean accept(File f) {
+					if(f.isDirectory()) {
+						return true;
+					}
+					return false;
+				}
+				@Override
+				public String getDescription() {
+					return null;
+				}
+			});
+			f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			f.setAcceptAllFileFilterUsed(false);
+			f.showOpenDialog(null);
+			StaticHelpers.setJavaLookAndFeel();
+			File dest = f.getSelectedFile();
+			for(File toMove : selected.listFiles()) {
+				String fileName = dest.getAbsolutePath()+"\\"+toMove.getName();
+				try {
+					Files.copy(Paths.get(toMove.getAbsolutePath()), Paths.get(fileName));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			selected = dest;
 		}
 		if(selected.isDirectory()) {
 			File[] jsons = selected.listFiles(new FilenameFilter() {
@@ -407,6 +442,7 @@ public class TopMenu implements ActionListener{
 	public void toolPathSettings() {
 		StaticHelpers.setWinLookAndFeel();
 		JFileChooser f = new JFileChooser();
+		f.setCurrentDirectory(new File("."));
 		f.addChoosableFileFilter(new FileFilter() {
 			@Override
 			public boolean accept(File f) {
