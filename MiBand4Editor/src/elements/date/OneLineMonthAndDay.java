@@ -28,12 +28,11 @@ public class OneLineMonthAndDay extends Element{
 	public OneLineMonthAndDay(int x, int y, String textAlignment, int spacing, int imageIndex,
 			int imageCount, int delimiterImageIndex) throws IOException, UnequalDimensionsException {
 		this.delimiterImageIndex=delimiterImageIndex;
-		number = new Number(x,y,textAlignment,spacing,imageIndex,imageCount);
-		String temp = new File(".").getAbsolutePath();
-		String absolutePath = temp.substring(0,temp.length()-1)+"data\\";
+		number = new Number(x,y,textAlignment,spacing,imageIndex,imageCount,5);
+		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
 		
 		String iFormatted = String.format("%04d", delimiterImageIndex);
-		File delimiter = new File(absolutePath+iFormatted+".png");
+		File delimiter = new File(absolutePath+"\\"+iFormatted+".png");
 		number.resizeToCoords(number.getBottomRightPoint().x+(number.getSize().width*3)+StaticHelpers.getImageDimension(delimiter).width, number.getBottomRightPoint().y);
 	}
 

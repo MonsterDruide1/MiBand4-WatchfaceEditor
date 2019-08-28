@@ -28,7 +28,7 @@ public class Distance extends Element{
 	int decimalPointImageIndex;
 	
 	public Distance(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount, int suffixImageIndex, int decimalPointImageIndex) throws IOException, UnequalDimensionsException {
-		distance = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount);
+		distance = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount,6);
 		this.suffixImageIndex=suffixImageIndex;
 		this.decimalPointImageIndex=decimalPointImageIndex;
 	}

@@ -30,17 +30,17 @@ public class AmPm extends Element{
 		this.imageIndexPm=imageIndexPm;
 
 		String amFormatted = String.format("%04d", imageIndexAm);
-		Dimension dAM = StaticHelpers.getImageDimension(new File("data/"+amFormatted+".png"));
+		Dimension dAM = StaticHelpers.getImageDimension(new File(MiBand4Editor.currentPath.getAbsolutePath()+"/"+amFormatted+".png"));
 		String pmFormatted = String.format("%04d", imageIndexAm);
-		Dimension dPM = StaticHelpers.getImageDimension(new File("data/"+pmFormatted+".png"));
+		Dimension dPM = StaticHelpers.getImageDimension(new File(MiBand4Editor.currentPath.getAbsolutePath()+"/"+pmFormatted+".png"));
 		if(!dAM.equals(dPM)) {
 			throw new UnequalDimensionsException(dAM+" unequals "+dPM);
 		}
 	}
 
 	public AmPm(JSONObject jsonObject) {
-		x=jsonObject.getInt("TopLeftX");
-		y=jsonObject.getInt("TopLeftY");
+		x=jsonObject.getInt("X");
+		y=jsonObject.getInt("Y");
 		imageIndexAm=jsonObject.getInt("ImageIndexAMEN");
 		imageIndexPm=jsonObject.getInt("ImageIndexPMEN");
 	}
@@ -67,8 +67,8 @@ public class AmPm extends Element{
 	public String getJSON() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("    \"DayAmPm\": {\r\n");
-		builder.append("      \"TopLeftX\": "+x+",\r\n");
-		builder.append("      \"TopLeftY\": "+y+",\r\n");
+		builder.append("      \"X\": "+x+",\r\n");
+		builder.append("      \"Y\": "+y+",\r\n");
 		builder.append("      \"ImageIndexAMEN\": "+imageIndexAm+",\r\n");
 		builder.append("      \"ImageIndexPMEN\": "+imageIndexPm+",\r\n");
 		builder.append("      \"ImageIndexAMCN\": "+imageIndexAm+",\r\n");

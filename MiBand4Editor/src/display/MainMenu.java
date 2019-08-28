@@ -359,9 +359,9 @@ public class MainMenu implements ActionListener {
 		int spacing = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_spacing")));
 		int imageIndex = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageIndex")));
 		int imageCount = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_imageCount")));
-		int delimiterIndex = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_delimiterIndex")));
+		int suffixIndex = Integer.parseInt(JOptionPane.showInputDialog(parent.getInLang("edit_suffixIndex")));
 		try {
-			Calories group = new Calories(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount, delimiterIndex);
+			Calories group = new Calories(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount, suffixIndex);
 			parent.addElement(group);
 			JPopupMenu activity = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[2].getSubElements()[0];
 			((JMenuItem)activity.getSubElements()[2]).setEnabled(false);
@@ -537,7 +537,7 @@ public class MainMenu implements ActionListener {
 		try {
 			Builder builder = new Builder();
 			builder.generateBackground(parent.bgItems.toArray(new BGItem[0]));
-			builder.generateJSON(parent.elements);
+			builder.generateJSON(parent.elements,parent.panel.getBGX(),parent.panel.getBGY());
 			File[][] disabled = builder.disableUnneededImgs(parent.elements);
 			builder.runBuilder();
 			builder.reenableImgs(disabled);

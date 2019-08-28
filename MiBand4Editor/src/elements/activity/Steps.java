@@ -24,11 +24,11 @@ public class Steps extends Element{
 	Number steps;
 	
 	public Steps(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount) throws IOException, UnequalDimensionsException {
-		steps = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount);
+		steps = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount,5);
 	}
 
 	public Steps(JSONObject jsonObject) {
-		steps = new Number(jsonObject.getJSONObject("Step"));
+		steps = new Number(jsonObject.getJSONObject("Number"));
 	}
 
 	public JPanel getPreview(int w, int h) throws IOException {
@@ -98,7 +98,7 @@ public class Steps extends Element{
 	public String getJSON() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("    \"Steps\": {\r\n");
-		builder.append(steps.getJSON("Step"));
+		builder.append(steps.getJSON());
 		builder.append("\r\n    }");
 		return builder.toString();
 	}

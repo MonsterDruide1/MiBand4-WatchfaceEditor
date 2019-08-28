@@ -110,9 +110,9 @@ public class EditMenu implements ActionListener {
 				edit.add(twoDigitsDay);
 			}
 			if(parent.getName().startsWith(Calories.class.toString())) {
-				JMenuItem delimiterIndex = new JMenuItem(main.getInLang("editMenu_edit_delimiterIndex"));
-				delimiterIndex.addActionListener(this);
-				edit.add(delimiterIndex);
+				JMenuItem suffixIndex = new JMenuItem(main.getInLang("editMenu_edit_suffixIndex"));
+				suffixIndex.addActionListener(this);
+				edit.add(suffixIndex);
 			}
 			if(parent.getName().startsWith(Pulse.class.toString())) {
 				JMenuItem delimiterIndex = new JMenuItem(main.getInLang("editMenu_edit_noDataIndex"));
@@ -508,9 +508,6 @@ public class EditMenu implements ActionListener {
 			if(element instanceof MonthAndDay) {
 				((MonthAndDay)element).changeDelimiterIndex(delimiterIndex);
 			}
-			else if(element instanceof Calories) {
-				((Calories)element).changeDelimiterIndex(delimiterIndex);
-			}
 			main.addElement(element,parent.getWidth(),parent.getHeight());
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, main.getInLang("error_imageNotFound_multi_title")+e1.getMessage(), main.getInLang("error_imageNotFound_multi_title"), JOptionPane.ERROR_MESSAGE);
@@ -578,6 +575,9 @@ public class EditMenu implements ActionListener {
 			main.elements.remove(element);
 			if(element instanceof Distance) {
 				((Distance)element).changeSuffixImageIndex(suffixIndex);
+			}
+			if(element instanceof Calories) {
+				((Calories)element).changeSuffixIndex(suffixIndex);
 			}
 			main.addElement(element,parent.getWidth(),parent.getHeight());
 		} catch (FileNotFoundException e1) {

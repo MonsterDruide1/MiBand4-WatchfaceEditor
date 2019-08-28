@@ -47,7 +47,7 @@ public class MiBand4Editor implements MouseListener, KeyListener{
 	
     public Point lastClick = new Point(-1, -1);
     
-    private SnapPanel panel;
+    public SnapPanel panel;
     private Mover mover;
     private JFrame main;
     public MainMenu mainMenu;
@@ -126,7 +126,7 @@ public class MiBand4Editor implements MouseListener, KeyListener{
         main.setVisible(true);
 	}
 	
-	private boolean isValidToolpath(File toolPath) throws IOException {
+	public boolean isValidToolpath(File toolPath) throws IOException {
 		if(!toolPath.exists()) {
 			return false;
 		}
@@ -137,7 +137,7 @@ public class MiBand4Editor implements MouseListener, KeyListener{
 		Process p = Runtime.getRuntime().exec(toolPath.getAbsolutePath()+"\\Watchface.exe");
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		String line = br.readLine();
-		if(line.equals("  Mi Band 4 Watchface Edited by PG 1.3.8")) {
+		if(line.equals("  Mi Band 4 Watchface Edited by PG 1.3.9")) {
 			return true;
 		}
 		return false;

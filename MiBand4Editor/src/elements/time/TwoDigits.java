@@ -15,6 +15,7 @@ import elements.Element;
 import elements.basic.ImageSet;
 import helpers.StaticHelpers;
 import helpers.UnequalDimensionsException;
+import main.MiBand4Editor;
 
 public class TwoDigits extends Element{
 
@@ -25,7 +26,7 @@ public class TwoDigits extends Element{
 	public TwoDigits(int x, int y, int imageIndex, int imageCount, boolean ignoreDimension) throws UnequalDimensionsException, IOException{
 		tens = new ImageSet(x,y,imageIndex,imageCount,ignoreDimension);
 		String imageIndexFormatted = String.format("%04d", imageIndex);
-		d = StaticHelpers.getImageDimension(new File("data/"+imageIndexFormatted+".png"));
+		d = StaticHelpers.getImageDimension(new File(MiBand4Editor.currentPath.getAbsolutePath()+"/"+imageIndexFormatted+".png"));
 		ones = new ImageSet(x+d.width,y,imageIndex,imageCount,ignoreDimension);
 	}
 
@@ -59,7 +60,7 @@ public class TwoDigits extends Element{
 		tens.changeImageIndex(newImageIndex);
 		ones.changeImageIndex(newImageIndex);
 		String iFormatted = String.format("%04d", newImageIndex);
-		d = StaticHelpers.getImageDimension(new File("data/"+iFormatted+".png"));
+		d = StaticHelpers.getImageDimension(new File(MiBand4Editor.currentPath.getAbsolutePath()+"/"+iFormatted+".png"));
 		setCoords(tens.getX(),tens.getY());
 	}
 

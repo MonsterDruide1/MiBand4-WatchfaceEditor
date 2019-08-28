@@ -26,12 +26,12 @@ public class Pulse extends Element{
 	int noDataImageIndex;
 	
 	public Pulse(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount, int noDataImageIndex) throws IOException, UnequalDimensionsException {
-		pulse = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount);
+		pulse = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount,3);
 		this.noDataImageIndex=noDataImageIndex;
 	}
 
 	public Pulse(JSONObject jsonObject) {
-		pulse = new Number(jsonObject.getJSONObject("Pulse"));
+		pulse = new Number(jsonObject.getJSONObject("Number"));
 		noDataImageIndex = jsonObject.getInt("NoDataImageIndex");
 	}
 
@@ -98,7 +98,7 @@ public class Pulse extends Element{
 	public String getJSON() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("    \"Pulse\": {\r\n");
-		builder.append(pulse.getJSON("Pulse"));
+		builder.append(pulse.getJSON());
 		builder.append(",\r\n");
 		builder.append("      \"NoDataImageIndex\": "+noDataImageIndex);
 		builder.append("\r\n    }");

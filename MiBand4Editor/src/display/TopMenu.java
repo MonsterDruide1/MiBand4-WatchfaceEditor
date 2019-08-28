@@ -220,7 +220,7 @@ public class TopMenu implements ActionListener{
 		try {
 			Builder builder = new Builder();
 			builder.generateBackground(parent.bgItems.toArray(new BGItem[0]));
-			builder.generateJSON(parent.elements);
+			builder.generateJSON(parent.elements,parent.panel.getBGX(),parent.panel.getBGY());
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -249,7 +249,7 @@ public class TopMenu implements ActionListener{
 		Builder builder = new Builder();
 		try {
 			builder.generateBackground(parent.bgItems.toArray(new BGItem[0]));
-			builder.generateJSON(parent.elements);
+			builder.generateJSON(parent.elements,parent.panel.getBGX(),parent.panel.getBGY());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -261,7 +261,7 @@ public class TopMenu implements ActionListener{
 		try {
 			Builder builder = new Builder();
 			builder.generateBackground(parent.bgItems.toArray(new BGItem[0]));
-			builder.generateJSON(parent.elements);
+			builder.generateJSON(parent.elements,parent.panel.getBGX(),parent.panel.getBGY());
 			File[][] disabled = builder.disableUnneededImgs(parent.elements);
 			builder.runBuilder();
 			builder.reenableImgs(disabled);
@@ -460,7 +460,13 @@ public class TopMenu implements ActionListener{
 		f.setAcceptAllFileFilterUsed(false);
 		f.showOpenDialog(null);
 		StaticHelpers.setJavaLookAndFeel();
-		MiBand4Editor.toolPath=f.getSelectedFile();
+		try {
+			if(parent.isValidToolpath(f.getSelectedFile())) {
+				MiBand4Editor.toolPath=f.getSelectedFile();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

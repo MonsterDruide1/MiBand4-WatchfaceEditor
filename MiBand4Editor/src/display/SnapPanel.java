@@ -55,7 +55,7 @@ public class SnapPanel extends JPanel implements MouseListener,MouseMotionListen
     	addMouseListener(this);
     	addMouseMotionListener(this);
     	try {
-    		BufferedReader br = new BufferedReader(new FileReader(new File(MiBand4Editor.currentPath.getAbsolutePath()+"\\watchface.json")));
+    		BufferedReader br = new BufferedReader(new FileReader(new File(MiBand4Editor.currentPath.getAbsolutePath()+"\\real_watchface.json")));
     		String line = "";
     		StringBuilder builder = new StringBuilder();
     		while((line=br.readLine())!=null) {
@@ -209,5 +209,13 @@ public class SnapPanel extends JPanel implements MouseListener,MouseMotionListen
 		JSONObject all = new JSONObject(builder.toString());
 		JSONObject image = all.getJSONObject("Background").getJSONObject("Image");
 		backgroundCoords = new Point(image.getInt("X"),image.getInt("Y"));
+	}
+
+	public int getBGX() {
+		return backgroundCoords.x;
+	}
+
+	public int getBGY() {
+		return backgroundCoords.y;
 	}
 }

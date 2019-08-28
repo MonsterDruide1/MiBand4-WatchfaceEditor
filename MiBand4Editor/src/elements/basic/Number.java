@@ -27,7 +27,7 @@ public class Number extends Element{
 	int imageIndex;
 	int imagesCount;
 
-	public Number(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount) throws IOException, UnequalDimensionsException {
+	public Number(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount,int width) throws IOException, UnequalDimensionsException {
 		Dimension d = null;
 		for(int i=imageIndex;i<imageIndex+imagesCount;i++) {
 			String iFormatted = String.format("%04d", i);
@@ -43,7 +43,7 @@ public class Number extends Element{
 		}
 		this.topLeftX=x;
 		this.topLeftY=y;
-		this.bottomRightX=x+(d.width);
+		this.bottomRightX=x+(d.width)*width;
 		this.bottomRightY=y+d.height;
 		this.alignment=textAlignment;
 		this.spacing=spacing;

@@ -39,12 +39,12 @@ import java.awt.Image;
 
 public class Builder {
 	
-	public void generateJSON(ArrayList<Element> elements) throws IOException {
+	public void generateJSON(ArrayList<Element> elements,int bgX, int bgY) throws IOException {
 		StringBuilder builder = new StringBuilder("{\r\n" + 
 				"  \"Background\": {\r\n" + 
 				"    \"Image\": {\r\n" + 
-				"      \"X\": 0,\r\n" + 
-				"      \"Y\": 0,\r\n" + 
+				"      \"X\": "+bgX+",\r\n" + 
+				"      \"Y\": "+bgY+",\r\n" + 
 				"      \"ImageIndex\": 0\r\n" + 
 				"    }\r\n" + 
 				"  }");

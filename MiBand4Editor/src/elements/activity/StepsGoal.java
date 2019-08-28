@@ -24,7 +24,7 @@ public class StepsGoal extends Element{
 	Number stepsGoal;
 	
 	public StepsGoal(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount) throws IOException, UnequalDimensionsException {
-		stepsGoal = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount);
+		stepsGoal = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount,5);
 	}
 
 	public StepsGoal(JSONObject jsonObject) {

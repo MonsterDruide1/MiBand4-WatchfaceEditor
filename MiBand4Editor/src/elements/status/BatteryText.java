@@ -24,7 +24,7 @@ public class BatteryText extends Element{
 	Number batteryText;
 	
 	public BatteryText(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount) throws IOException, UnequalDimensionsException {
-		batteryText = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount);
+		batteryText = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount,3);
 	}
 
 	public BatteryText(JSONObject jsonObject) {

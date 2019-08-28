@@ -24,16 +24,16 @@ import main.MiBand4Editor;
 public class Calories extends Element{
 	
 	Number stepsGoal;
-	int delimiterImageIndex;
+	int suffixImageIndex;
 	
-	public Calories(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount, int delimiterImageIndex) throws IOException, UnequalDimensionsException {
-		stepsGoal = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount);
-		this.delimiterImageIndex=delimiterImageIndex;
+	public Calories(int x, int y, String textAlignment, int spacing, int imageIndex, int imagesCount, int suffixImageIndex) throws IOException, UnequalDimensionsException {
+		stepsGoal = new Number(x,y,textAlignment,spacing,imageIndex,imagesCount,5);
+		this.suffixImageIndex=suffixImageIndex;
 	}
 
 	public Calories(JSONObject jsonObject) {
 		stepsGoal = new Number(jsonObject.getJSONObject("Number"));
-		delimiterImageIndex=jsonObject.getInt("DelimiterImageIndex");
+		suffixImageIndex=jsonObject.getInt("SuffixImageIndex");
 	}
 
 	public JPanel getPreview(int w, int h) throws IOException {
@@ -44,7 +44,7 @@ public class Calories extends Element{
 		TopalignedLabel label2 = new TopalignedLabel(stepsGoal.getImage(0));
 		TopalignedLabel label3 = new TopalignedLabel(stepsGoal.getImage(0));
 		TopalignedLabel label4 = new TopalignedLabel(stepsGoal.getImage(0));
-		TopalignedLabel label5 = new TopalignedLabel(StaticHelpers.getJLabelFromImage(delimiterImageIndex));
+		TopalignedLabel label5 = new TopalignedLabel(StaticHelpers.getJLabelFromImage(suffixImageIndex));
 		panel.add(label1);
 		panel.add(label2);
 		panel.add(label3);
@@ -105,7 +105,7 @@ public class Calories extends Element{
 		builder.append("    \"Calories\": {\r\n");
 		builder.append(stepsGoal.getJSON());
 		builder.append(",\r\n");
-		builder.append("      \"DelimiterImageIndex\": "+delimiterImageIndex);
+		builder.append("      \"SuffixImageIndex\": "+suffixImageIndex);
 		builder.append("\r\n    }");
 		return builder.toString();
 	}
@@ -118,7 +118,7 @@ public class Calories extends Element{
 			all[i]=used[i];
 		}
 		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
-		String iFormatted = String.format("%04d", delimiterImageIndex);
+		String iFormatted = String.format("%04d", suffixImageIndex);
 		all[all.length-1]=new File(absolutePath+"\\"+iFormatted+".png");
 		return all;
 	}
@@ -143,8 +143,8 @@ public class Calories extends Element{
 		stepsGoal.resizeToCoords(x, y);
 	}
 
-	public void changeDelimiterIndex(int delimiterIndex) {
-		delimiterImageIndex=delimiterIndex;
+	public void changeSuffixIndex(int suffixImageIndex) {
+		this.suffixImageIndex=suffixImageIndex;
 	}
 
 	public Point getLocation() {
