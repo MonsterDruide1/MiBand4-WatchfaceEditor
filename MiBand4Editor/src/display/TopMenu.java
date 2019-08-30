@@ -342,9 +342,12 @@ public class TopMenu implements ActionListener{
 			});
 			f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			f.setAcceptAllFileFilterUsed(false);
-			f.showOpenDialog(null);
+			f.showSaveDialog(null);
 			StaticHelpers.setJavaLookAndFeel();
 			File dest = f.getSelectedFile();
+			if(!dest.exists()) {
+				dest.mkdirs();
+			}
 			for(File toMove : selected.listFiles()) {
 				String fileName = dest.getAbsolutePath()+"\\"+toMove.getName();
 				try {
@@ -359,11 +362,8 @@ public class TopMenu implements ActionListener{
 			File[] jsons = selected.listFiles(new FilenameFilter() {
 				@Override
 				public boolean accept(File f, String fName) {
-					System.out.println(fName);
 					String[] name = fName.split("\\.");
-					System.out.println(name[name.length-1]);
 					if(name[name.length-1].equals("json")) {
-						System.out.println("YES");
 						return true;
 					}
 					return false;

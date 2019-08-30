@@ -21,7 +21,6 @@ import elements.activity.Pulse;
 import elements.activity.Steps;
 import elements.activity.StepsGoal;
 import elements.date.AmPm;
-import elements.date.MonthAndDay;
 import elements.date.OneLineMonthAndDay;
 import elements.date.WeekDay;
 import elements.status.BatteryIcon;
@@ -248,8 +247,8 @@ public class EditMenu implements ActionListener {
 				((SecondsGroup)element).changeImageIndex(imageIndex);
 				main.addElement(element);
 			}
-			else if(element instanceof MonthAndDay) {
-				((MonthAndDay)element).changeImageIndex(imageIndex);
+			else if(element instanceof OneLineMonthAndDay) {
+				((OneLineMonthAndDay)element).changeImageIndex(imageIndex);
 				main.addElement(element,parent.getWidth(),parent.getHeight());
 			}
 			else if(element instanceof WeekDay) {
@@ -313,8 +312,8 @@ public class EditMenu implements ActionListener {
 				((SecondsGroup)element).changeImageCount(imageCount);
 				main.addElement(element);
 			}
-			else if(element instanceof MonthAndDay) {
-				((MonthAndDay)element).changeImageCount(imageCount);
+			else if(element instanceof OneLineMonthAndDay) {
+				((OneLineMonthAndDay)element).changeImageCount(imageCount);
 				main.addElement(element,parent.getWidth(),parent.getHeight());
 			}
 			else if(element instanceof WeekDay) {
@@ -430,8 +429,8 @@ public class EditMenu implements ActionListener {
 		try {
 			parent.getParent().remove(parent);
 			main.elements.remove(element);
-			if(element instanceof MonthAndDay) {
-				((MonthAndDay)element).changeAlignment(alignment);
+			if(element instanceof OneLineMonthAndDay) {
+				((OneLineMonthAndDay)element).changeAlignment(alignment);
 			}
 			else if(element instanceof Steps) {
 				((Steps)element).changeAlignment(alignment);
@@ -469,8 +468,8 @@ public class EditMenu implements ActionListener {
 		try {
 			parent.getParent().remove(parent);
 			main.elements.remove(element);
-			if(element instanceof MonthAndDay) {
-				((MonthAndDay)element).changeSpacing(spacing);
+			if(element instanceof OneLineMonthAndDay) {
+				((OneLineMonthAndDay)element).changeSpacing(spacing);
 			}
 			else if(element instanceof Steps) {
 				((Steps)element).changeSpacing(spacing);
@@ -505,8 +504,8 @@ public class EditMenu implements ActionListener {
 		try {
 			parent.getParent().remove(parent);
 			main.elements.remove(element);
-			if(element instanceof MonthAndDay) {
-				((MonthAndDay)element).changeDelimiterIndex(delimiterIndex);
+			if(element instanceof OneLineMonthAndDay) {
+				((OneLineMonthAndDay)element).chageDelimiterIndex(delimiterIndex);
 			}
 			main.addElement(element,parent.getWidth(),parent.getHeight());
 		} catch (FileNotFoundException e1) {
@@ -541,7 +540,7 @@ public class EditMenu implements ActionListener {
 		try {
 			parent.getParent().remove(parent);
 			main.elements.remove(element);
-			((MonthAndDay)element).changeTwoDigitsMonth(twoDigitsMonth);
+			((OneLineMonthAndDay)element).changeTwoDigitsMonth(twoDigitsMonth);
 			main.addElement(element,parent.getWidth(),parent.getHeight());
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, main.getInLang("error_imageNotFound_multi_title")+e1.getMessage(), main.getInLang("error_imageNotFound_multi_title"), JOptionPane.ERROR_MESSAGE);
@@ -557,7 +556,7 @@ public class EditMenu implements ActionListener {
 		try {
 			parent.getParent().remove(parent);
 			main.elements.remove(element);
-			((MonthAndDay)element).changeTwoDigitsDay(twoDigitsDay);
+			((OneLineMonthAndDay)element).changeTwoDigitsDay(twoDigitsDay);
 			main.addElement(element,parent.getWidth(),parent.getHeight());
 		} catch (FileNotFoundException e1) {
 			JOptionPane.showMessageDialog(null, main.getInLang("error_imageNotFound_multi_title")+e1.getMessage(), main.getInLang("error_imageNotFound_multi_title"), JOptionPane.ERROR_MESSAGE);

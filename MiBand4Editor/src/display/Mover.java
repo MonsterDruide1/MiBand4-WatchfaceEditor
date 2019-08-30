@@ -17,7 +17,6 @@ import elements.activity.Pulse;
 import elements.activity.Steps;
 import elements.activity.StepsGoal;
 import elements.date.AmPm;
-import elements.date.MonthAndDay;
 import elements.date.OneLineMonthAndDay;
 import elements.date.WeekDay;
 import elements.status.BatteryIcon;
@@ -138,7 +137,7 @@ public class Mover implements MouseListener, MouseMotionListener {
     		Point p = new Point((int)((((double)arg0.getPoint().getX())+((double)component.getX()))/3),(int)(((double)arg0.getPoint().getY())+((double)component.getY()))/3);
     		System.out.println(p);
     		if(component.getName().startsWith(OneLineMonthAndDay.class.toString())) {
-            	MonthAndDay e = (MonthAndDay)parent.elements.get(Integer.parseInt(component.getName().split("\\|\\|")[1]));
+            	OneLineMonthAndDay e = (OneLineMonthAndDay)parent.elements.get(Integer.parseInt(component.getName().split("\\|\\|")[1]));
             	component.getParent().remove(component);
             	try {
             		JPanel panel = (JPanel) e.getPreview((int)arg0.getPoint().getX(),(int)arg0.getPoint().getY());

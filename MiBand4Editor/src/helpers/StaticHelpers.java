@@ -36,7 +36,9 @@ import elements.activity.Pulse;
 import elements.activity.Steps;
 import elements.activity.StepsGoal;
 import elements.date.AmPm;
-import elements.date.MonthAndDay;
+import elements.date.OneLineMonthAndDay;
+import elements.date.SeparateDay;
+import elements.date.SeparateMonth;
 import elements.date.WeekDay;
 import elements.status.BatteryIcon;
 import elements.status.BatteryText;
@@ -217,6 +219,9 @@ public class StaticHelpers {
 						parent.addElement(group,loc);
 						parent.mainMenu.setEnabled(group, false);
 					}
+					else {
+						System.out.println("Element not found: "+timeKey);
+					}
 				}
 			}
 			else if(key.equals("Date")) {
@@ -227,12 +232,53 @@ public class StaticHelpers {
 					String dateKey=dateKeys.next();
 
 					if(dateKey.equals("MonthAndDay")) {
-						MonthAndDay group = new MonthAndDay(date.getJSONObject(dateKey));
-						Point loc = new Point((int)group.getLocation().getX()*3,(int)group.getLocation().getY()*3);
-						int w=(int) ((group.getBottomRightPoint().getX()*3) - loc.getX());
-						int h=(int) ((group.getBottomRightPoint().getY()*3) - loc.getY());
-						parent.addElement(group,w,h,loc);
-						parent.mainMenu.setEnabled(group, false);
+						JSONObject monthAndDay = date.getJSONObject(dateKey);
+						Iterator<String> monthKeys = monthAndDay.keys();
+						
+						while(monthKeys.hasNext()) {
+							String monthKey=monthKeys.next();
+
+							if(monthKey.equals("Separate")) {
+
+								JSONObject separate = monthAndDay.getJSONObject(monthKey);
+								Iterator<String> separateKeys = separate.keys();
+								
+								while(separateKeys.hasNext()) {
+									String separateKey=separateKeys.next();
+
+									if(separateKey.equals("Month")) {
+										SeparateMonth group = new SeparateMonth(monthAndDay);
+										Point loc = new Point((int)group.getLocation().getX()*3,(int)group.getLocation().getY()*3);
+										int w=(int) ((group.getBottomRightPoint().getX()*3) - loc.getX());
+										int h=(int) ((group.getBottomRightPoint().getY()*3) - loc.getY());
+										parent.addElement(group,w,h,loc);
+										parent.mainMenu.setEnabled(group, false);
+									}
+									else if(separateKey.equals("Day")) {
+										SeparateDay group = new SeparateDay(monthAndDay);
+										Point loc = new Point((int)group.getLocation().getX()*3,(int)group.getLocation().getY()*3);
+										int w=(int) ((group.getBottomRightPoint().getX()*3) - loc.getX());
+										int h=(int) ((group.getBottomRightPoint().getY()*3) - loc.getY());
+										parent.addElement(group,w,h,loc);
+										parent.mainMenu.setEnabled(group, false);
+									}
+									else {
+										System.out.println("Element not found: "+monthKey);
+									}
+								}
+							}
+							else if(monthKey.equals("OneLine")) {
+								OneLineMonthAndDay group = new OneLineMonthAndDay(date.getJSONObject(dateKey));
+								Point loc = new Point((int)group.getLocation().getX()*3,(int)group.getLocation().getY()*3);
+								int w=(int) ((group.getBottomRightPoint().getX()*3) - loc.getX());
+								int h=(int) ((group.getBottomRightPoint().getY()*3) - loc.getY());
+								parent.addElement(group,w,h,loc);
+								parent.mainMenu.setEnabled(group, false);
+							}
+							else if(!(monthKey.equals("TwoDigitsMonth")||monthKey.equals("TwoDigitsDay"))){
+								System.out.println("Element not found: "+monthKey);
+							}
+						}
 					}
 					else if(dateKey.equals("WeekDay")) {
 						WeekDay weekDay = new WeekDay(date.getJSONObject(dateKey));
@@ -245,6 +291,9 @@ public class StaticHelpers {
 						Point loc = new Point((int)dayAmPm.getLocation().getX()*3,(int)dayAmPm.getLocation().getY()*3);
 						parent.addElement(dayAmPm,loc);
 						parent.mainMenu.setEnabled(dayAmPm, false);
+					}
+					else {
+						System.out.println("Element not found: "+dateKey);
 					}
 				}
 			}
@@ -295,6 +344,9 @@ public class StaticHelpers {
 						parent.addElement(group,w,h,loc);
 						parent.mainMenu.setEnabled(group, false);
 					}
+					else {
+						System.out.println("Element not found: "+dateKey);
+					}
 				}
 			}
 			else if(key.equals("Status")) {
@@ -319,16 +371,18 @@ public class StaticHelpers {
 								parent.addElement(group,w,h,loc);
 								parent.mainMenu.setEnabled(group, false);
 							}
-							else if(statusKey.equals("Icon")) {
+							else if(batteryKey.equals("Icon")) {
 								BatteryIcon group = new BatteryIcon(battery.getJSONObject(batteryKey));
 								Point loc = new Point((int)group.getLocation().getX()*3,(int)group.getLocation().getY()*3);
 								parent.addElement(group,loc);
 								parent.mainMenu.setEnabled(group, false);
 							}
+							else if(!batteryKey.equals("BatteryConfig")){
+								System.out.println("Element not found: "+batteryKey);
+							}
 						}
 					}
-
-					if(statusKey.equals("DoNotDisturb")) {
+					else if(statusKey.equals("DoNotDisturb")) {
 						Switch group = new Switch("DoNotDisturb",status.getJSONObject(statusKey));
 						Point loc = new Point((int)group.getLocation().getX()*3,(int)group.getLocation().getY()*3);
 						parent.addElement(group,loc);
@@ -346,7 +400,13 @@ public class StaticHelpers {
 						parent.addElement(group,loc);
 						parent.mainMenu.setEnabled(group, false);
 					}
+					else {
+						System.out.println("Element not found: "+statusKey);
+					}
 				}
+			}
+			else if(!key.equals("Background")) {
+				System.out.println("Element not found: "+key);
 			}
 		}
 		br = new BufferedReader(new FileReader(new File(folder.getAbsolutePath()+"/bgItems.list")));

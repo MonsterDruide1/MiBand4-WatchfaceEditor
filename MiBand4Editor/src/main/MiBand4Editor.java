@@ -34,8 +34,9 @@ import elements.activity.Pulse;
 import elements.activity.Steps;
 import elements.activity.StepsGoal;
 import elements.date.AmPm;
-import elements.date.MonthAndDay;
 import elements.date.OneLineMonthAndDay;
+import elements.date.SeparateDay;
+import elements.date.SeparateMonth;
 import elements.date.WeekDay;
 import elements.status.BatteryIcon;
 import elements.status.BatteryText;
@@ -182,9 +183,19 @@ public class MiBand4Editor implements MouseListener, KeyListener{
     public void addElement(Element e, int w, int h, Point location) throws IOException {
     	int index = elements.size();
     	elements.add(e);
-    	
-    	if(e instanceof MonthAndDay) {
-        	JPanel p = (JPanel) ((MonthAndDay)e).getPreview(w,h);
+
+    	if(e instanceof OneLineMonthAndDay) {
+        	JPanel p = (JPanel) ((OneLineMonthAndDay)e).getPreview(w,h);
+        	p.setName(p.getName()+"||"+index);
+        	addComponent(p,location);
+    	}
+    	else if(e instanceof SeparateMonth) {
+        	JPanel p = (JPanel) ((SeparateMonth)e).getPreview(w,h);
+        	p.setName(p.getName()+"||"+index);
+        	addComponent(p,location);
+    	}
+    	else if(e instanceof SeparateDay) {
+        	JPanel p = (JPanel) ((SeparateDay)e).getPreview(w,h);
         	p.setName(p.getName()+"||"+index);
         	addComponent(p,location);
     	}

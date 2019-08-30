@@ -25,7 +25,9 @@ import elements.activity.Pulse;
 import elements.activity.Steps;
 import elements.activity.StepsGoal;
 import elements.date.AmPm;
-import elements.date.MonthAndDay;
+import elements.date.OneLineMonthAndDay;
+import elements.date.SeparateDay;
+import elements.date.SeparateMonth;
 import elements.date.WeekDay;
 import elements.status.BatteryIcon;
 import elements.status.BatteryText;
@@ -59,7 +61,7 @@ public class Builder {
 			if(element instanceof HoursGroup || element instanceof MinutesGroup || element instanceof SecondsGroup) {
 				timeElements.add(element);
 			}
-			else if(element instanceof AmPm || element instanceof MonthAndDay || element instanceof WeekDay) {
+			else if(element instanceof AmPm || element instanceof OneLineMonthAndDay || element instanceof WeekDay || element instanceof SeparateDay || element instanceof SeparateMonth) {
 				dateElements.add(element);
 			}
 			else if(element instanceof Steps || element instanceof StepsGoal || element instanceof Calories || element instanceof Pulse || element instanceof Distance) {
@@ -94,6 +96,7 @@ public class Builder {
 			if(!first) {
 				builder.append(",\r\n");
 			}
+			
 			builder.append(element.getJSON());
 			first=false;
 		}

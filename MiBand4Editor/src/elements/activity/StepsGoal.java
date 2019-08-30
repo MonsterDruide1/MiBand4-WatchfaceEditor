@@ -75,7 +75,9 @@ public class StepsGoal extends Element{
 		mainPanel.setName(panel.getName());
 		
 		if(w!=0 && h!=0) {
-			mainPanel.setSize(new Dimension(w,h));
+			Dimension preferred = layout.preferredLayoutSize(panel);
+			Dimension finalD = new Dimension(Math.max(preferred.width, w),Math.max(preferred.height, h));
+			mainPanel.setSize(finalD);
 		}
 		else {
 			mainPanel.setSize(layout.preferredLayoutSize(panel));

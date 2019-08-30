@@ -22,7 +22,7 @@ import elements.activity.Pulse;
 import elements.activity.Steps;
 import elements.activity.StepsGoal;
 import elements.date.AmPm;
-import elements.date.MonthAndDay;
+import elements.date.OneLineMonthAndDay;
 import elements.date.WeekDay;
 import elements.status.BatteryIcon;
 import elements.status.BatteryText;
@@ -273,7 +273,7 @@ public class MainMenu implements ActionListener {
 		boolean twoDigitsMonth = StaticConfigurators.askForBoolean(parent.getInLang("edit_twoDigitsMonth_title"),parent.getInLang("edit_twoDigitsMonth"),parent.getInLang("edit_accept"));
 		boolean twoDigitsDay = StaticConfigurators.askForBoolean(parent.getInLang("edit_twoDigitsDay_title"),parent.getInLang("edit_twoDigitsDay"),parent.getInLang("edit_accept"));
 		try {
-			MonthAndDay group = new MonthAndDay(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount, delimiterIndex, twoDigitsMonth, twoDigitsDay);
+			OneLineMonthAndDay group = new OneLineMonthAndDay(parent.lastClick.x/3, parent.lastClick.y/3, alignment, spacing, imageIndex, imageCount, delimiterIndex, twoDigitsMonth, twoDigitsDay);
 			parent.addElement(group);
 			JPopupMenu date = (JPopupMenu) menu.getSubElements()[0].getSubElements()[0].getSubElements()[1].getSubElements()[0];
 			((JMenuItem)date.getSubElements()[0]).setEnabled(false);
@@ -538,9 +538,9 @@ public class MainMenu implements ActionListener {
 			Builder builder = new Builder();
 			builder.generateBackground(parent.bgItems.toArray(new BGItem[0]));
 			builder.generateJSON(parent.elements,parent.panel.getBGX(),parent.panel.getBGY());
-			File[][] disabled = builder.disableUnneededImgs(parent.elements);
+			//File[][] disabled = builder.disableUnneededImgs(parent.elements);
 			builder.runBuilder();
-			builder.reenableImgs(disabled);
+			//builder.reenableImgs(disabled);
 		} catch (IOException | InterruptedException e1) {
 			e1.printStackTrace();
 		}
@@ -567,7 +567,7 @@ public class MainMenu implements ActionListener {
 		else if(element instanceof AmPm) {
 			((JMenuItem)date.getSubElements()[2]).setEnabled(enabled);
 		}
-		else if(element instanceof MonthAndDay) {
+		else if(element instanceof OneLineMonthAndDay) {
 			((JMenuItem)date.getSubElements()[0]).setEnabled(enabled);
 		}
 		else if(element instanceof WeekDay) {

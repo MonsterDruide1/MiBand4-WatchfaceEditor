@@ -20,46 +20,36 @@ import helpers.StaticHelpers;
 import helpers.UnequalDimensionsException;
 import main.MiBand4Editor;
 
-public class OneLineMonthAndDay extends Element{
+public class SeparateMonth extends Element{
 
 	Number number;
 	int delimiterImageIndex;
 	boolean twoDigitsMonth;
-	boolean twoDigitsDay;
 	
-	public OneLineMonthAndDay(int x, int y, String textAlignment, int spacing, int imageIndex,
-			int imageCount, int delimiterImageIndex, boolean twoDigitsDay, boolean twoDigitsMonth) throws IOException, UnequalDimensionsException {
+	public SeparateMonth(int x, int y, String textAlignment, int spacing, int imageIndex,
+			int imageCount, int delimiterImageIndex, boolean twoDigitsMonth) throws IOException, UnequalDimensionsException {
 		this.delimiterImageIndex=delimiterImageIndex;
-		number = new Number(x,y,textAlignment,spacing,imageIndex,imageCount,5);
+		number = new Number(x,y,textAlignment,spacing,imageIndex,imageCount,2);
 		String absolutePath = MiBand4Editor.currentPath.getAbsolutePath();
 		
 		String iFormatted = String.format("%04d", delimiterImageIndex);
 		File delimiter = new File(absolutePath+"\\"+iFormatted+".png");
 		number.resizeToCoords(number.getBottomRightPoint().x+(number.getSize().width*3)+StaticHelpers.getImageDimension(delimiter).width, number.getBottomRightPoint().y);
-		this.twoDigitsDay = twoDigitsDay;
 		this.twoDigitsMonth = twoDigitsMonth;
 	}
 
-	public OneLineMonthAndDay(JSONObject fullObj) {
-		JSONObject jsonObject = fullObj.getJSONObject("OneLine");
-		number = new Number(jsonObject.getJSONObject("Number"));
-		delimiterImageIndex = jsonObject.getInt("DelimiterImageIndex");
+	public SeparateMonth(JSONObject fullObj) {
+		JSONObject jsonObject = fullObj.getJSONObject("Separate");
+		number = new Number(jsonObject.getJSONObject("Month"));
 		twoDigitsMonth = fullObj.getBoolean("TwoDigitsMonth");
-		twoDigitsDay = fullObj.getBoolean("TwoDigitsDay");
 	}
 
 	public JPanel getPreview(int w, int h) throws IOException {
 		FlowLayout layout = new FlowLayout(FlowLayout.CENTER,number.getSpacing()*2,0);
 		layout.setAlignOnBaseline(true);
 		JPanel panel = new JPanel(layout);
-		TopalignedLabel monthTensPrev = new TopalignedLabel(number.getImage(3));
-		TopalignedLabel monthOnesPrev = new TopalignedLabel(number.getImage(1));
-		TopalignedLabel delimiter = new TopalignedLabel(StaticHelpers.getJLabelFromImage(delimiterImageIndex));
 		TopalignedLabel dayTensPrev = new TopalignedLabel(number.getImage(1));
 		TopalignedLabel dayOnesPrev = new TopalignedLabel(number.getImage(2));
-		panel.add(monthTensPrev);
-		panel.add(monthOnesPrev);
-		panel.add(delimiter);
 		panel.add(dayTensPrev);
 		panel.add(dayOnesPrev);
 		panel.setName(this.getClass().toString());
@@ -111,12 +101,12 @@ public class OneLineMonthAndDay extends Element{
 	public String getJSON() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("    \"MonthAndDay\": {\r\n");
-		builder.append("      \"OneLine\": {\r\n");
+		builder.append("      \"Separate\": {\r\n");
+		builder.append("        \"Month\": {\r\n");
 		builder.append(number.getJSON());
-		builder.append(",\r\n        \"DelimiterImageIndex\": "+delimiterImageIndex+"\r\n");
+		builder.append("        }\r\n");
 		builder.append("      }\r\n");
-		builder.append(",\r\n      \"TwoDigitsMonth\": "+twoDigitsMonth+",\r\n");
-		builder.append("      \"TwoDigitsDay\": "+twoDigitsDay+"\r\n");
+		builder.append(",\r\n      \"TwoDigitsMonth\": "+twoDigitsMonth+"\r\n");
 		builder.append("    }\r\n");
 		return builder.toString();
 	}
@@ -134,6 +124,10 @@ public class OneLineMonthAndDay extends Element{
 		newFiles[newFiles.length-1]=new File(absolutePath+"\\"+iFormatted+".png");
 		
 		return newFiles;
+	}
+	
+	public boolean getTwoDigitsMonth() {
+		return twoDigitsMonth;
 	}
 
 	public void resizeToCoords(int x, int y) {
@@ -175,10 +169,6 @@ public class OneLineMonthAndDay extends Element{
 
 	public void changeTwoDigitsMonth(boolean twoDigitsMonth) {
 		this.twoDigitsMonth=twoDigitsMonth;
-	}
-
-	public void changeTwoDigitsDay(boolean twoDigitsDay) {
-		this.twoDigitsDay=twoDigitsDay;
 	}
 
 }
